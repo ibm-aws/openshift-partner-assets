@@ -1,0 +1,1 @@
+# openshift-partner-assets
