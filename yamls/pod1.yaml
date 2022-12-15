@@ -1,0 +1,16 @@
+kind: Pod
+metadata:
+  namespace: servicelayer
+spec:
+  volumes:
+    - name: efsap1
+      persistentVolumeClaim:
+        claimName: pvc-sv1
+  containers:
+    - name: test-efs-pod
+      image: centos:latest
+      command: [ "/bin/bash", "-c", "--" ]
+      args: [ "while true; do sleep 30; done;" ]
+      volumeMounts:
+        - mountPath: /mnt/efs-data
+          name: efsap1

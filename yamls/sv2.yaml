@@ -1,0 +1,8 @@
+apiVersion: aws-efs.managed.openshift.io/v1alpha1
+kind: SharedVolume
+metadata:
+  name: sv2
+spec:
+  accessPointID: fsap-0123456789abcdef
+  fileSystemID: fs-1234cdef
+  allowVolumeExpansion: true

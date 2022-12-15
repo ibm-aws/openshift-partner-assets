@@ -1,1 +1,1 @@
-# openshift-partner-assets
+# ocp-foundations
