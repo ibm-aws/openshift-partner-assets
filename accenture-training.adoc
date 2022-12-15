@@ -302,12 +302,12 @@ Default output format [table]:
 .Domain Name Registration.
 .. OpenShift requires are live domain to be registered either through Route53 or DNS Resolution Providers.
 ----
-$ aws route53 list-hosted-zones-by-name --dns-name ibmworkshops.com
+$ aws route53 list-hosted-zones-by-name --dns-name gsilcp4s.com
 Sample output truncated.
 -------------------------------------------------------------------------
 |                         ListHostedZonesByName                         |
 +------------------------------------+----------------------------------+
-|  DNSName                           |  ibmworkshops.com                |
+|  DNSName                           |  gsilcp4s.com                |
 |  IsTruncated                       |  False                           |
 |  MaxItems                          |  100                             |
 +------------------------------------+----------------------------------+
@@ -467,8 +467,34 @@ oc get operators
 oc get operatorhubs cluster -o yaml
 
 ----------------------------------------------------------------
+=== Installing IBM CloudPak for Security (CP4S) through Operator Console.
 
-=== Identity Providers
+. Install IBM Catalog Operation as shown below 
+
+image::images/IBMCatalog.png[IBMCatalog]
+
+. And Click Create, You can view the Operator which got installed. 
+
+image::images/cp4s.png[cp4s]
+
+=== View the Deployment Topology.
+
+image::images/cp4s_deploy.png[cp4s_deploy]
+
+. Create a threat Management Instance.
+
+image::images/threat.png[threat]
+
+In the domain field, Please use your domain name for example `accentureworkshops.com` and in my case it is `fyre.ibm.com` which is FQDN.
+
+
+Create the Storage Class which you are using in default. In your case it should be like given below.
+
+image::images/storage.png[storage]
+
+NOTE: [blue]#Click Create to start installation. Installation takes 1.5 hours to get complete#
+
+== Identity Providers
 
 .Supported Identity Providers
 
@@ -903,8 +929,7 @@ $ oc policy can-i --list
 NOTE: This command shows a deprecation warning but there is currently no alternative available.
 
 
-=== OpenShift Cli tools and Useful Commands (Demo will be provided).
-
+=== OpenShift Cli tools and Useful Commands 
 ----
 $ oc whoami --show-console
 
@@ -1119,6 +1144,22 @@ for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug
 ----------------------------------
 
 
+=== Automating Shutdown operations
+
+This tool was built to automate the steps to create an Openshift 4 backup described on https://docs.openshift.com/container-platform/4.10/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd.html
+
+Cronjob openshift-backup resource will be created and scheduled to run at 11:56 PM (GMT) and keep last 3 days on backup's directory. All files with more than 3 days will be removed from the backups directory.
+
+Apply yaml to create Openshift resources
+
+[source]
+----------------------------------------------------------------
+oc apply -f openshift4-backup.yaml
+----------------------------------------------------------------
+
+NOTE: [blue]#This Automated Script file is been checked-in the GitHub Repository#
+
+
 == References
 
 . https://aws.amazon.com/solutions/partners/ibm-cloud-pak-for-security/
@@ -1129,6 +1170,7 @@ for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug
 . https://docs.openshift.com/container-platform/4.10/welcome/index.html
 . https://console.redhat.com/openshift/install/pull-secret
 . https://aws.amazon.com/cli/
+. https://cloud.redhat.com/blog/ocp-disaster-recovery-part-1-how-to-create-automated-etcd-backup-in-openshift-4.x
 . https://github.com/aws-ia/taskcat/blob/main/README.md
 . https://12factor.net/
 
