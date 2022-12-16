@@ -1154,6 +1154,10 @@ Apply yaml to create Openshift resources
 
 [source]
 ----------------------------------------------------------------
+git clone https://github.com/ibm-aws/openshift-partner-assets.git
+
+cd openshift-partner-assets
+
 oc apply -f openshift4-backup.yaml
 ----------------------------------------------------------------
 
@@ -1172,12 +1176,18 @@ NOTE: [blue]#This Automated Script file is been checked-in the GitHub Repository
 . https://aws.amazon.com/cli/
 . https://cloud.redhat.com/blog/ocp-disaster-recovery-part-1-how-to-create-automated-etcd-backup-in-openshift-4.x
 . https://github.com/aws-ia/taskcat/blob/main/README.md
+. https://github.com/ibm-aws/openshift-partner-assets.git
 . https://12factor.net/
 
 
-== conclusions
-. This will cover the OpenShift Course Training Sessions.
-. This will cover the Overview of CLI Tools.
+== What we have learned about?
+
+. Overview of OpenShift Console.
+. Overview of CLI Tools.
+. Openshift various Installation Methods.
+. Installation of Cli tools.
+. CP4S various Installation Methods.
+. Overview of OpenShift Shutdown and Backup Operations
 
 == Appendix
 
