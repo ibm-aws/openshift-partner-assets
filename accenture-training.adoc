@@ -1144,7 +1144,7 @@ for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug
 ----------------------------------
 
 
-=== Automating Shutdown operations
+=== Automating backup operations
 
 This tool was built to automate the steps to create an Openshift 4 backup described on https://docs.openshift.com/container-platform/4.10/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd.html
 
